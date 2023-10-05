@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model UrunAddViewModel
+
+
+<!-- Main content -->
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Quick Example</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="urunAdi">Ürün Adı</label>
+                            <input asp-for="UrunAdi" type="text" class="form-control" id="exampleInputEmail1" placeholder="Ürün Adı">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Kategori</label>
+                            <select asp-for="KategoriId" type="text" class="form-control" asp-items="Model.KategoriListesi"></select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="Aciklama">Açıklama</label>
+                            <br />
+                            <div class="note-editor note-frame card"></div>
+                            <textarea asp-for="Aciklama"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>ÜRÜN FİYATLARİ</label>
+
+                            <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Başlık</td>
+                                    <td>Açıklama</td>
+                                    <td>Fiyat</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td id="tdid">1</td>
+                                    <td>
+                                        <input type="text" id="txtBaslik" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtAciklama" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtFiyat" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="button" id="btnFiyatEkle" value="Fiyat Ekle" />
+                                    </td>
+                                </tr>
+                            </thead>
+                            
+
+                            <tbody id="UrunFiyatListesi">
+
+                            </tbody>
+                            </table>
+
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">Ürün Resimler</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="fuUrunResimleri">
+                                    <label class="custom-file-label" for="exampleInputFile">Resim Seç</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gallery"></div>
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <button id="btnUrunEkle" type="button" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+</div><!-- /.container-fluid -->
+<!-- /.content -->
+
+
+@section style{
+    <link rel="stylesheet" src="/adminassets/plugins/summernote/summernote-bs4.css" />
+
+}
+
+
+@section Script{
+    <script src="/adminassets/plugins/summernote/summernote-bs4.js"></script>
+
+    <script>
+        $("#Aciklama").summernote({
+            "height": 200
+        });
+
+        $(document).ready(
+           
+            function(){
+                $("#fuUrunResimleri").change(
+                    function(){
+                        var files = $(this)[0].files;
+                        for(var i=0 < files.length; i++){
+                            var reader = new FileReader();
+                            reader.onload = function(event){
+                                table = "<img width='150' src = '" +event.target.result + "'>";
+
+                                $("div.gallery").append(table);
+                            }
+                            reader.readAsDataURL(files[i]);
+                        }
+                    }
+                )
+            }
+        )
+
+    </script>
+}

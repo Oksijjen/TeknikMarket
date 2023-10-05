@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+}
+@model LogInVm
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teknik Market | Giriş Sayfası</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/admin/css/adminlte.min.css">
+
+    <style>
+        .field-validation-error{
+            color:red;
+        }
+
+        .validation-summary-errors {
+            color:red;
+        }
+    </style>
+
+
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Teknik</b>Market</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <form action="/admin/User/LogIn" method="post">
+
+                    @*@Html.ValidationSummary()*@
+                    <div asp-validation-summary="All"></div>
+
+                    @Html.AntiForgeryToken()
+
+                    <div class="input-group mb-3">
+                        <input type="email" asp-for="Email" class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    @*@Html.ValidationMessage()*@
+                    <span asp-validation-for="Email"></span>
+
+                    <div class="input-group mb-3">
+                        <input type="password" asp-for="Sifre" class="form-control" placeholder="Şifreniz">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Sifre"></span>
+
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input asp-for="BeniHatırla" type="checkbox" id="remember">
+                                <label for="remember">
+                                    Beni Hatırla
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+                            @ViewBag.Mesaj
+                        </div>
+                        
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <p class="mb-1">
+                    <a href="#">Şifrenizi mi unuttunuz?</a>
+                </p>
+                <p class="mb-0">
+                    <a href="#" class="text-center">Kayıt olmak mı istiyorsunuz</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/admin/js/adminlte.min.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

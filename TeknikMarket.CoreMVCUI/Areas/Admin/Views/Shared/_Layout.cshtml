@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teknik Market | Starter</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/adminassets/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="/adminassets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/adminassets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="/adminassets/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/adminassets/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/adminassets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="/adminassets/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="/adminassets/plugins/summernote/summernote-bs4.min.css">
+
+    <link href="~/lib/limonte-sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/limonte-sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
+    @RenderSection("style",false)
+
+
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!--Main Header-->
+        @await Component.InvokeAsync("MainHeader")
+        <!--/.Main Header-->
+
+        @await Component.InvokeAsync("SideBar")
+
+        <div class="content-wrapper">
+            @*@await Component.InvokeAsync("ContentHeader")*@
+            @RenderSection("contentheader",false)
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        @RenderBody()
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @{
+            await Html.RenderPartialAsync("~/Areas/Admin/Views/Shared/Partials/_footer.cshtml");
+            //Partials kullanacaksak bu cshtml dosyasına herhangi bir kod yazmayacağımızı ön görmemiz lazım çünkü model kavramı partial metotlarda geçersiz kılınır. Kısaca partial yapacaksak bu footer tagını hiçbir şekilde buraya kod yazmayacağımızı ön görmemiz lazım.
+            //sayfanın yüklendiğine emin olduğunda git async(asekron) metohodu çalıştır.
+        }
+
+    </div>
+    <!-- jQuery -->
+    <script src="/adminassets/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="/adminassets/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="/adminassets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="/adminassets/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="/adminassets/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="/adminassets/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="/adminassets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="/adminassets/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="/adminassets/plugins/moment/moment.min.js"></script>
+    <script src="/adminassets/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="/adminassets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="/adminassets/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="/adminassets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/adminassets/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/adminassets/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="/adminassets/js/pages/dashboard.js"></script>
+    <script src="~/lib/limonte-sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/limonte-sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="~/limonte-sweetalert2/sweetalert2.min.js"></script>
+    @RenderSection("Script",false)
+</body>
+</html>
